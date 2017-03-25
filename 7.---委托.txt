@@ -1,0 +1,162 @@
+1.//索引器的本质：在类里面定义一个容器（数组），属性，在main中使用对象名[索引]调用  
+
+                 属性格式：public 数组元素类型  this[声明 下标]    =  {set{设置数组元素的值}get{返回值}}
+
+                public class Person
+	       { // 字典存储姓名，分数
+		Dictionary<string,object> messageDict=new Dictionary<string, object>();
+		public  object  this [string key] {
+			set {
+				messageDict [key] = value;
+			}
+			get{ 
+				return  messageDict[key];
+			}
+		}
+		public Person ()
+		{
+		}
+	}
+
+                        Person p=new Person ();
+			p["name"]="dsfdsfsda";
+			p ["age"] = 10;
+
+
+
+  
+2.           /*委托：方法类型
+	      *将方法当做参数传递时使用委托
+	      *委托的声明:
+	      *delegate 返回值类型   委托类型名 (参数列表);
+	      *
+              *委托的声明需要在末尾加上分号！！！！
+	      */
+		
+
+                 //定义一个委托类型没有返回值，有两个参数
+		delegate   void  MyDelegate(string  str1,string str2);
+		
+                 public   delegate   string   ThisDelegate();
+	  
+		public static void Main (string[] args)
+		{   
+
+          //1.创建委托，并且赋值-------赋值方法名，但是该方法的返回值和参数列表要和声明的委托相同
+			     
+
+
+           //2.委托可以绑定静态或非静态方法
+			
+                 MyDelegate   md=CombineStr;
+			
+
+             //3.使用委托，跟调用方法一样：委托名（参数列表）
+			
+
+
+
+                        md("werew","ewqsa");
+			Person  p=new Person ();
+			MyDelegate person1 = p.PrintNameAndGender;
+			person1 ("sda", "wd");
+			
+
+
+              //4.多播委托(委托绑定了多个方法，使用：+=)
+			  
+               // 使用多播委托的时候会将绑定的所有方法都执行一遍
+			person1+=p.PrintDelegate;
+			person1 ("sda", "wd");
+			
+
+
+              //5.多播委托有返回值的时候(结果是最后一个委托执行的结果，前面的结果会被覆盖)
+			ThisDelegate   td=method1;
+			td += method2;
+			string result=td ();
+			//输出：method2
+			Console.WriteLine (result);  
+			
+
+
+
+
+                        /*
+			 * 1.系统内置委托：Action，Func
+			 * （1）.Action 是系统内置的无返回值的委托
+			 * 
+			 *       格式：Action<T,T1,...>
+			 * 
+			 * 
+			 *        表示该委托类型数日参数为 T ,T1,...，但是没有返回值
+                         *        而Action：表示无参数无返回值
+			 *   （2）.Func 是系统内置的有返回值的委托
+			 *     格式 ：例如：Func<int ,int,string >
+			 * 
+			 *     该委托 输入参数为两个int类型，返回值为最后一个参数类型string
+			 * 
+			 *        Func<string>
+			 *        表示无参数，返回值为string
+			 * 
+			 * 
+			 *     注意：   ref ，out ，params不可用在内置委托当中，但是可以用在一般委托当中!!!
+			 * 
+			 * 2.匿名方法的声明：在声明创建委托变量的时候使用delegate
+			 * 
+			 *   格式：
+			 * 
+			 *    （Action或 Func）
+			 *        委托类型           委托变量 =delegate（参数列表）{
+			 *        如果返回值不是void  就必须要return返回值
+			 *       };
+			 * 
+			 *      注意：  匿名委托方法后面一定要加分号，因为这是一个赋值声明语句!!!
+			 * 
+			 * 
+			 * 
+			 *3.lambda 表达式：用来替代一个匿名方法
+			 *
+			 *
+			 *   注意:   参数列表不需要写修饰符!!!
+			 *    格式：委托类型  委托变量 =（参数列表）=>{
+			 *       方法体 （有返回值要return）
+			 * };
+			 *  注意：  lambda 表达式后面一定要加分号，因为这是一个赋值声明语句!!!
+			*/ 
+			
+			//匿名方法的声明部分就相当于 正常的委托过程（从赋值到调用）
+			
+
+
+
+
+
+
+
+
+
+
+		 * 事件：在声明创建委托变量的时候使用event修饰
+		 * 
+		 * 其他的使用跟委托一样
+		 * 
+		 * 区别：
+		 * 
+		 *1. 委托（把方法当成参数传递）可以声明为类成员，也可以声明为局部变量
+		 * 
+		 *2. 事件：只能是类成员  赋值：+=  销毁：-=
+		 *   事件在类A（发行者）的外部访问的时候只能出现在+=或者-=的左边，也就是说在其他类B（订阅者）当                     中将这个类B的方   法与委托绑定，而在类A中定义一些方法（这个方法是公共的且包含委托的实现）                     
+                                                    
+                    来提供对外访问的接口；
+                 *     
+                 *    
+                 *      
+		 *   事件必须在所在的类里面才可以执行，在类的外面只能注册（+=）或注销（-=）
+		 *
+		 *
+		 *观察者模式：一个野怪是观察者 （订阅者）  （不主动攻击，观察别人，当别人攻击他时，做出反应）
+		 *
+		 *     发送（或引发）事件的类称为"发行者",接收或处理事件的类称为"订阅者 "
+		 *    事件的触发必须在发行者内部，在订阅者那边是不能触发的
+		*/

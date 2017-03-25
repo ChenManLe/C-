@@ -1,0 +1,187 @@
+         
+	      string  :引用类型
+	      但是可以通过 "==","!="   来比较两个字符串是否相等
+	    
+
+
+
+1.静态创建（字面量）创建方式
+	     string  str="dsafdsa ";
+
+
+2.格式化创建
+			
+               string.format(str,s1,s2,s3...)str表示我们想要定义的字符串
+		
+               s1----...表示对应str中占位符输，类型很多，可以是常量或变量
+		   
+	        string   str1=string.Format("my name is {0},my age is{1}","lisi",14);
+		string str2 = string.Format ("{0}", str1);
+
+3.判断那两个字符串是否相等(字符串的内容，不是地址)
+		
+                bool  isEqual=str1==str2;
+		Console.WriteLine (isEqual);
+
+4.字符串的长度(中文也算一个字符)字符串本身可以看做字符数组
+   所以可以通过：字符串.Length 来访问字符串的长度
+			       
+		Console.WriteLine("str.Length={0}",str.Length);	        
+			    
+			
+5.数组的遍历（注意：不可以通过下标来改变字符串中的某一个字符，str[i]是只读的）
+			
+                   for(int  i=0;i<str.Length;i++){
+		       Console.Write (str [i] + " ");
+			}
+			Console.WriteLine ();
+			     
+                    //注意a的类型要跟数组的元素类型对应
+			foreach (char  a in str) {
+				Console.Write (a + " ");
+			}
+			Console.WriteLine ();
+6.不可变字符串:引用类型赋值是引用赋值，值类型是完全拷贝
+			
+                        string strtemp="name";
+			string strtemp1=strtemp;
+			strtemp1="agewdsrafdsafdsdfsa";
+			Console.WriteLine (strtemp + "," + strtemp1);
+			
+7.{Contains()}  bool isContain=str.Contains(string str1)功能就是判断一个字符串str中是否包含了字符串str1，返回 一个bool值
+			bool isContain=strtemp.Contains("na");
+			Console.WriteLine ("isContain="+isContain);
+			
+8.{Indexof()}    int index=str.Indexof(string str1):
+             在字符串str当中查找是否有跟str1匹配的字符串或字符,若有返回第一个匹配的第一个字符串第一个                   字符对应的下标（从0开始）,否则返回-1
+			
+		   string	
+            IndexOf(Char,?int32,?int32)	
+              报告指定字符在此实例中的第一个匹配项的从零开始的索引,搜索从指定字符位置开始，并检查指定             数量的字符位置。
+			
+			int index1=strtemp1.IndexOf("af");
+			Console.WriteLine ("index1={0}", index1);
+
+9.{ LastIndexOf()}   int index=str.LastIndexOf(string str1)
+			在字符串str当中查找是否有跟str1匹配的字符串或字符
+			若有返回最后一个匹配的字符串第一个字符对应的下标（从0开始）
+			否则返回-1
+			
+			int lastIndex = strtemp1.LastIndexOf ("af");
+			Console.WriteLine ("lastIndex={0}", lastIndex);
+
+10.声明一个字符串常量:使用const，且赋值之后值不可以改变
+			const string  catr="1234";
+			Console.WriteLine ("catr=" + catr);
+			
+11.{ PadLeft()}       string  str1=str.PadLeft(int n)
+                 
+               返回指定长度n的字符串，若n<=str.Length,返回str,否则返回n长度的字符串，左侧用空格代替
+			string mystr="abcds";
+			string newMystr=mystr.PadLeft (10);
+			Console.WriteLine ("newmystr=" + newMystr);
+			
+12.{ PadRight()}
+                  string  str1=str.PadRight(int n)
+                 
+                 返回指定长度n的字符串，若n<=str.Length,返回str,否则返回n长度的字符串，右侧用空格代替
+			string newMystr1=mystr.PadRight (10);
+			Console.WriteLine ("newmystr1=" + newMystr1);
+			
+13.{ Remove() }    string str1=str.Remove(int startIndex,int count )
+               返回一个从当前下标开始删除指定数量count（count可以不写，则删除到最后）之后得到的字符串
+
+			string removeStr=mystr.Remove(2);
+			Console.WriteLine ("removeStr="+ removeStr);
+			
+ 14.{ Replace() }
+                  string str1=str.Replace(string oldString,string newString)将字符串当中oldString替换 为newString
+			string replaceStr=mystr.Replace("abc","123343432");
+			Console.WriteLine ("replaceStr="+ replaceStr);
+			
+15.{ Spilt()}    string[]str1=str.Spilt(char a)	根据字符a在字符串中的位置切割字符串(结果中是没有a的)
+		
+                 string[]str1=str.Spilt(char []a)根据字符数组当中的元素在字符串中的位置切割字符串
+	         string[]str1=str.Spilt(char []a,int count )根据字符数组当中的元素在字符串中的位置切割字符串,且不超过字符串的最大数量count
+			
+			string  strDemo="        15757829502       ";
+			char[] arr = { '7', '2' };
+			string  []array=strDemo.Split (arr);
+			string  []array1=strDemo.Split (arr,2);
+			PrintArray<string> (array);
+			PrintArray<string> (array1);
+                        public static   void PrintArray<T>(T [] array){
+			foreach (T x in array) {
+				Console.WriteLine (x );
+			}
+			
+16.{ ToUpper()}   string str1=str.ToUpper()将字符串当中的小写字母转换成大写字母
+		string str1=str.ToLower()将字符串当中的大写字母转换成小写字母
+			
+			string  UpperMystr=mystr.ToUpper();
+			Console.WriteLine ("UpperMystr=" + UpperMystr);
+		 //拓展 { ToCharArray()} char[]a=str.ToCharArray()将此实例中的字符复制到Unicode 字符数组  
+			
+                    PrintArray<char> (UpperMystr.ToCharArray());
+		
+18.{Trim() }        string  str1=str.Trim()   
+                      移除字符串前后的空白字符，中间的不会移除
+			TrimStart()移除字符串前的空白字符，中间的不会移除
+			 TrimEnd()移除字符串后的空白字符，中间的不会移除
+			
+			string  trimstr=strDemo.Trim();
+			Console.WriteLine ("trimstr=" + trimstr+"*******");
+			
+19.{ Substring( )}  string str1=str.Substring(int index)
+                           从指定下标开始直到末尾截取这段字符串并返回
+			substring(int index,int n ):从指定下标开始，截取长度为n的一段字符串并返回
+			
+                        string SubStr=strDemo.Substring(10);
+			Console.WriteLine ("SubStr=" + SubStr);
+
+			
+20.{ CompareTo()}       int a=str1.CompareTo (str2):比较两个字符串的值，若相等则返回0，
+			当比较至第一个不相等的字符:str1的字符c1，str2的字符c2
+			若 c1>c2,则返回1
+			若c1<c2,则返回-1
+			
+			string cstr1="hello";
+			string cstr2 = "hello";
+			int  re = cstr1.CompareTo (cstr2);
+			Console.WriteLine (re);
+			
+21.{ Concat()}   string  str2=string.Concat(str1,str2)
+                     
+			string  re1=string.Concat (cstr1, cstr2);  
+			Console.WriteLine (re1);
+			
+22.{ Insert()}         
+                       string str2=str.Insert(int index,string str1)在某个下标插入一个字符串
+			Console.WriteLine(cstr1.Insert(3,"4567"));
+
+			
+23.{join() }        string str1=string.join(str,string []strArray),将字符串数组通过str拼接成想要的字符串
+			string[] strArray = { "123", "234", "456" };
+			string  joinStrs=string.Join (" ", strArray);
+			
+                        
+                         stringBuilder创建方式:先在开头引入  1.using System.Text
+			       2. StringBuilder str=new StringBuilder (int capacity)
+                            capacity为建议的容量，若用户定义的字符串大于容量，则系统自动扩展
+                         
+                         用StringBuilder 类中的append方法去拼接字符串不会开辟内存空间，
+			 会在原有的字符串上进行修改
+			
+			StringBuilder sb=new StringBuilder ();
+			StringBuilder sb1=new StringBuilder (80);
+			StringBuilder sb2=new StringBuilder ("string");
+
+			StringBuilder sb4 = sb2.Append ("mystr");//sb2的值也会变成stringmystr
+		        Console.WriteLine (sb2);
+			Console.WriteLine (sb4);
+
+
+注意：string  类型没有Clear（）方法，而stringbuilder有 Clear()方法;两者皆没有Add（）方法
+
+	
+		

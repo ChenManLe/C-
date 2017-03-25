@@ -1,0 +1,90 @@
+
+using System.Collections.Generic; 
+
+
+	
+	    /*Dictionary:字典，是键值对集合
+	     *Dictionary<TKey,TValue>   TKey代表键的类型，TValue代表值的类型
+	     *使用字典必须引入类：System.Collection.Generic
+	     */
+		
+ //1.创建字典
+		
+             Dictionary<int,string> classDict = new Dictionary<int, string> (); 
+
+			
+//2.往子典里面添加键值对
+
+			
+   //(1).add(Key,Value) 注意：add不允许添加有相同的键值的键值对
+			classDict.Add(2,"伟哥");
+                         classDict.Add(2,"伟")(这是错误的);
+
+			
+   //(2).字典[Key]=value;如果该建值存在，这是一个修改的操作，如果不存在，这是一个添加键值对的操作
+			classDict[8]="老钟";
+			
+
+ //3.根据键值来查找对应的值  bool result=classDict.TryGetValue(2,out  key1Value);
+			string key1Value;
+
+			bool result=classDict.TryGetValue(2,out  key1Value);
+			Console.WriteLine ("result={0},key1Value={1}",result,key1Value);
+			
+
+      //通过字典加[]也可以访问字典当中的键值对，但是字典当中的键值对必须存在
+			Console.WriteLine (classDict [8]);
+
+			
+//4.clear():移除字典当中的所有键值对
+
+			
+//5. bool  remove(key):通过key值移除对应的键值对，移除成功返回true，否则返回false
+			
+            bool  result2=classDict.Remove(2);
+			   
+      //count：字典当中键值对的数量
+			
+           Console.WriteLine ("result2={0},   count={1}", result2, classDict.Count);
+			
+
+
+//5.遍历key值与value值,注意：foreach是只读的
+                            
+                          foreach (var  temp in nameDic) {
+				Console.WriteLine ("name={0},count={1}", temp.Key, temp.Value);
+			   }
+
+
+
+
+//6.ContainsKey()   bool  isContain=classDict.ContainsKey(2);
+			
+                         bool  isContain=classDict.ContainsKey(2);
+			bool isContain1 = classDict.ContainsValue ("老钟");
+			Console.WriteLine (" isContain={0},isContain1 ={1}", isContain, isContain1);
+
+			Dictionary<string,int >    nameDic=new Dictionary<string, int> ();
+
+
+          //用户输入10个名字，可以重复输入，输出每个名字及他的次数
+			for (int i = 0; i < 10; i++) {
+				string name=	Console.ReadLine ();
+				if (nameDic.ContainsKey (name)) {
+					//value的值加1
+					nameDic [name]++;
+				} else {
+					nameDic [name] = 1;
+
+				}
+
+
+			}
+			foreach (var  temp in nameDic) {
+				Console.WriteLine ("name={0},count={1}", temp.Key, temp.Value);
+			}
+
+
+		
+
+

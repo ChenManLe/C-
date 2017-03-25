@@ -1,0 +1,60 @@
+
+using System.Collections;
+
+
+			
+//1.ArrayList:对象数组  需要添加 using System.Collections;
+			ArrayList  al=new ArrayList ();
+			注意：声明不能加[]
+
+
+//2.添加数组元素(object)并且返回下标    int Add(object obj)
+			int index0=	al.Add("str1");
+			int index1=	al.Add("str2");
+			int index2=	al.Add(80);
+			Console.WriteLine ("0={0},1={1},2={2}",index0, index1, index2);
+			
+
+
+//3.数组当中插入元素   al.Insert(3,"value"); 前面是下标
+			al.Insert(3,"value");
+			Console.WriteLine (al [3]);
+			
+
+
+//4.遍历数组当中的元素
+			
+                   for(int index=0;index<al.Count;index++){
+				Console.WriteLine (al [index]);
+			}
+			/*foreach  不能用
+			foreach (int x in al) {
+				Console.WriteLine (x);
+			}
+			*/
+			
+
+
+//5.Remove() 从对象数组中移除特定对象的第一个匹配项，没有就不做操作，
+      RemoveAt(int index) 从对象数组中移除指定下标的对象（不可越界）
+			al.Remove (80);
+			Console.WriteLine ("-------------------");
+			al.RemoveAt (2);
+			for(int index=0;index<al.Count;index++){
+				Console.WriteLine (al [index]);
+			}
+			
+
+ 
+//6.Reverse() 反转  al.Reverse();
+			
+                          al.Reverse();
+			for(int index=0;index<al.Count;index++){
+				Console.WriteLine (al [index]);
+			}
+
+
+//7.sort()   ,Contains()   ,clear(),Count
+
+
+//7.  泛型--------调用 system.collection.generic      List<T>   list =new   List<T>();

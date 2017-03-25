@@ -1,0 +1,409 @@
+
+//using 表示引用,console类在system的命名空间下
+using System;
+//namespace表示命名空间
+namespace sumup_Basic
+{
+	//系统快捷键
+	       /*运行:ctrl+f5
+	          编译:ctrl+f8
+	         偏好:tools-options-fonts
+	          `	references:引用,参照
+	         */
+	class MainClass
+	{
+		//进制格式		
+		/*16进制：0x
+	          8进制：0
+                   10进制转其他进制，连除倒取余 （什么进制就以什么为除数，然后商作为被除数，直到余数小于进制。   最后倒取余数）
+	           */
+		//多行注释不可嵌套
+		//main函数是程序入口
+		//数据类型
+
+		/*数据类型:
+		 * 1.值类型(简单类型 ) 
+		 * 2.引用类型
+		 */
+		public static void Main (string[] args)
+		{
+			//Console.WriteLine是打印语句，主要用于调试程序
+			Console.WriteLine ("Hello World!");
+			//简单类型的取值范围
+                     byte<short<int<long             
+                    
+                      byte:无符号 8位整数    sbyte ：(signed  byte) 有符号8位
+                     short:有符号  16位整数  ushort:(unsigned   short)
+                     int : 有符号  32位整数   uint:
+                     long:有符号  64位整数    ulong:
+                     取值范围（long<double）
+
+
+
+
+			/*bool： true/false 
+			sbyte :-128-127    short：-32768 - 32767			 
+                          byte :0-255      ushort:0 - 65535 
+		   */
+		//16位字符char只能用 '' 表示   ,' '中只能有一个字符,取值范围：char(16)<int(32)
+			char character='a';
+			Console.WriteLine (character);
+			//浮点数
+			/*float单精度 double双精度  decimal高精度（但是double的取值范围大于decimal）
+			float需要在后面加f(小数默认double),decimal需要在后面加m
+			*/
+			float num1 = 10f;
+			double num2=10;
+			decimal num3 = 10m;
+			Console.WriteLine (num1/ 3);
+			Console.WriteLine (num2/ 3);
+			Console.WriteLine (num3/ 3);
+			//string:字符串,用双引号表示
+			string  str="hello lanou";
+			Console.WriteLine (str);
+
+			Console.WriteLine ("str="+str);
+			//拼接
+			/*字符串的拼接使用+号，例如string str="hello lanou";
+			  字符串的拼接任意值类型使用+号,例如int num1=1;
+			   系统内部会自动的将值类型转换为字符串类型，再拼接
+			   输出str与num1的连接字符串：Console.WriteLine(str+num1);
+			   */
+
+			//查找float,double,decimal的取值范围(MSDN)
+
+			int a1 = 20, b1 = 21;
+			//c1 = 22;
+			Console.WriteLine (a1);
+			Console.WriteLine (b1);
+			/*bool a = true;
+			 float b = 1.2f;
+			 string c = "cl";
+			 char d='c';
+			 decimal e = 2.3m;
+			*/
+			//交换两个变量的值(不使用第三方变量)
+			a1 = a1 + b1;
+			b1  = a1 - b1;
+			a1 = a1 - b1;
+			Console.WriteLine (a1);
+			Console.WriteLine (b1);
+			//变量的命名规则
+			/*变量的命名规则:
+			 * 1.只能用数字.字母.下划线或者@组成，且数字不能开头，@必须为开头
+			 *2.不可以与系统关键字同名
+			 *3.变量名不可以重复,且区分大小写
+			 *4.见名知意
+			 *5.驼峰命名法:第一个单词首字母小写，后面遇到一个新单词首字母大写
+			*/
+			//运算符和表达式
+			/*1.=赋值
+			 * 2.整数相除取整7/3=2,小数相除无取整要求
+			 * 3.%取余
+			 * 4.++,--,++在变量前先自增后运算,在变量后先赋值再自增
+			 * 5.a+=b同a=a+b, -=, *=, /=,  %/
+			*/
+			int a = 7, b = 3;
+			float c = a % b;
+			Console.WriteLine (c);
+			a += b++;
+			Console.WriteLine (a );
+			Console.WriteLine (b);
+			//输出函数
+			/* 输出函数(打印函数)
+			 * console.Write();打印函数,不会自动换行
+			 * console.Writeline()会自动换行
+			*/
+			Console.Write ("adsafdsfdf");
+			//转义字符
+			/*\n  换行（转义字符:\）
+			 * \\打印\
+			 * \"打印"
+			 * \'打印'
+			*/
+			Console.WriteLine ("\n");
+			Console.WriteLine ("\t............");
+			Console.WriteLine ("\t............\"");	
+			Console.WriteLine ("hello \n world");
+			Console.WriteLine ("hello \n world\\");
+			hello
+			world\
+			//字符串前面加@可以使转义字符失去作用
+			Console.WriteLine (@"hello \n world\\");
+			//字符串会被原样的打印出来: hello \n world\\
+			//{0}，{1}占位符
+
+
+			string name="zhangsan";
+			int age = 18;
+			float weight = 70.5f;
+			Console.WriteLine("名字={0}，年龄={1}，体重={2}",name,age,weight);
+			//用相同的占位符，输出结果相同
+			Console.WriteLine("名字={0}，年龄={1}，英文名={0}",name,age,weight);
+			//保留整数位和小数位
+			double a5=23.5,b5=34.7;
+			Console.WriteLine ("a5={0:000.00},b5={1:00.000}",a5,b5);
+			注意：一开始的0和1为占位符，冒号后面的是输出格式
+			//保留小数点后几位
+			Console.WriteLine ("a5={0:f2},b5={1:f3}",a5,b5); 保留小数点后n位：fn
+			//百分数后面留几位
+			double a6=0.235,b6=0.347;
+			Console.WriteLine ("a6={0:p2},b6={1:p3}",a6,b6);保留百分数后n位：pn
+			//系统输入
+			/*console.read表示读取一个字符，按回车键结束,返回一个整形数（其实是字符转成的ASCII码）
+			 * 比如说：输入 0，其实返回的是48
+			 * console.readline表示读取一行字符，按回车键结束,返回一个字符串
+			*/
+			/*int input = Console.Read ();
+			Console.WriteLine ("input={0}", input);
+			string  str1=Console.ReadLine();
+			Console.WriteLine("str={0}",str1)；
+			*/
+			//类型转换
+			/*隐式转换(必须是值类型int,float,double,byte.由取值范围小变大)系统自动完成很安全
+			    强制转换,(加括号及强制转换的类型)1.int v=20；byte newv=(byte)v;(小数，整数)
+			    2.使用Parse 格式：转换类型.Parse(字符串)注意：此公式只能转换字符串
+			   3.Convert  Convert.ToXxx( )（object）,Xxx里面的内容必须跟你要转换的类型是一致的，否则会报错.
+!!!!!!注意 ：例如  int a，b；  float c=（float）a/b;  先强制转换再赋值
+        */
+			string number = "12.3";	string number1 = "34";
+			float  newnumber=float.Parse(number);
+			int    newnumber1=Convert .ToInt16(number1);
+			Console.WriteLine ("a={0},b={1}", newnumber,number1	);
+
+			//关系运算符			
+			/*关系运算符 :用于比较，比较的结果只有真假两种
+		 *		所以比较的结果用一个bool值来存储
+		 *	关系运算符: > >= < <= ==(是否相等) !=(是否不等于)
+		 *
+		 *	不能用0代表false  
+		*/
+
+
+			//逻辑运算符
+			/*
+			逻辑运算符 ：逻辑运算符组成的表达式的结果只有两种，真\假
+			3种逻辑运算符:(短路现象)
+			<1>逻辑与 &&:
+			逻辑与两边的表达式同时为真，整个逻辑表达式的结果才为真
+			当判断到前面有一个为假，后面的表达式不再运算
+			<2>逻辑或 ||:
+			逻辑或两边的表达式只要有一个为真，整个逻辑表达式结果就为真
+			逻辑或两边表达式同时为假，整个逻辑表达式结果才为假
+			当判断到前面有一个为真，后面的表达式不再运算
+			<3>逻辑非  !:
+	
+			*/
+
+			//按位运算符
+			/*
+			按位运算符
+			<1>  &
+			<2>  |
+
+			*/
+			//程序结构
+			/*
+			程序结构
+			《1》顺序结构：程序按照顺序执行
+			《2》分支结构：程序按照一定的条件选择执行某一段代码块
+			《3》循环结构：程序满足一定条件重复执行某一段代码块
+			*/
+
+
+
+			//分支结构			
+			/*
+				* 分支结构之if
+				* <1> if(条件表达式){
+					* 		代码段
+					* }
+				代码段如果只有一条语句，{}可以不写，但是为了编程规范，建议写上
+				if()后面不能加上;,否则条件成立与否后面的代码段都会执行
+				<2>if(条件表达式){
+					代码段1
+				}else{
+					代码段2 
+				}
+				条件表达式为真的时候执行代码段1，否则执行代码段2
+
+				<3>if(条件表达式1){
+					代码块1
+				}else if(条件表达式2){
+					代码块2
+				}else{
+					代码块3
+				}
+				条件表达式1为真执行代码块1，后面不再判断。若条件条件表达式2
+				为真，执行代码块2，若条件表达式1和2都为假，那么执行代码块3
+
+//输入一个整数，判断这个整数是否大于100
+				/*
+			int inputNum = int.Parse(Console.ReadLine());
+			if (inputNum > 100) {
+				Console.WriteLine ("是");
+			}
+			Console.WriteLine ("========");
+			*/
+
+			/*
+				 * Console.readline是只能接收string，也就是字符串。
+                  但是Console.Read()虽然返回int，但这个int并不是你输入的一个整型数字，而是你输入的第一个字符的ASCII码数值，
+                也就是说其实Console.Read()接收的是Char，只不过返回int，而这个int是所接收的Char的ASCII码数值。
+                  比如你可以用Console.Read()，来读取一串字符“Adgadsfasd”，Console.Read()会返回65，也就是第一个字符A的ASCII码值。
+                  */
+
+
+
+
+
+			//条件运算符
+			/* 条件运算符(三目运算符)
+			 * 格式： 条件表达式 ? 表达式1 : 表达式2
+			 * 如果条件表达式为真，那么整个表达式的结果等于
+			 * 表达式1的结果，否则等于表达式2的结果
+			 * int c = a > b? 3+4: b;
+			 * 
+			 * a > b = true: c = 3+4
+			 * a > b = false:c = b
+			*/
+
+
+//循环结构
+			/*
+		循环结构:满足一定条件下重复执行某段代码；
+		（1）循环结构之while：
+		格式while（表达式）{
+		循环体（代码段）
+		}
+
+               当条件为真时，进入循环体。否则跳出循环体。
+
+		*/
+		
+//switch语句
+			/*结构
+				 * switch(表达式){
+				 * case 值1(常量)：{语句块或语句1；break;}
+				 * case 值2(常量)：{语句块或语句2；break;}
+				 * ......
+				 * case 值n(常量)：{语句块或语句n；break;}
+				 * default:{语句块或语句n；break;}
+				 * }
+				 * 注意：1.switch中的表达式不能为浮点类型；
+				 *        2.break用来结束switch语句，直接跳到程序外；
+				 *        3.default语句只能有一个，且可以省略；
+				 *        4.case的数量是随意的，且多个case可以运行相同的语句
+                                           5.switch 语句体可以为空，但是如果有case语句，case中必须要有break
+				*/
+
+
+
+
+//循环结构之do...while
+		/*格式：do{
+			循环体
+		}while(条件表达式)
+        逻辑：程序运行到该语句时，先执行循环，在判断条件是否成立
+		*/
+		
+//循环结构之for循环
+		/*for循环一般用于循环次数已知的情况
+		 * 格式：
+		 * for(循环变量初始值；条件表达式；循环变量变化){
+		 * 循环体}
+		 * 逻辑：变量初始化，判断表达式是否为真，是的话执行循环体，循环变量变化
+		 * 在判断条件表达式是否为真，是的话继续执行循环体
+		 * 直到条件表达式不成立，退出循环
+		 * 注意：continue是结束本次循环，进行下次循环
+		*/
+//数组
+			/*数组：由相同类型的数据成员组成的的一组数据
+			 * 格式：int[]array;  float[]array;  string[]array;
+			 * 初始化方式：
+			 * 1.动态初始化：int[]array=new int[数组长度];int[]array=new int[]{1,2,3};
+			 * 动态初始化借助new运算符为数组元素分配内存空间，并赋予初值
+			 * 数值类型初始值为0（输出0），布尔类型初值为false（输出false），字符串初值为null(就是输出为空)；
+			 * 此情况下数组大小不允许为变量
+			 * 2.静态初始化：int[]array={1,2,3}
+			 * 访问：采用数组名+下标（如array[1]），下标是从0开始的；数组长度：array.length
+			 * 数组下标不能越界，最大的下标为:数组.length-1;(这个编译器不会识别下标越界，只会造成运行错误)
+		 */
+
+//冒泡排序
+
+			//	double []arr={12,90,14,84,34,9,23,55,10.5,8};
+			/* double t;
+			 
+						for(int i=0;i<arr.Length-1;i++){
+                     //-i是为了控制比较次数
+                       for (int j = 0; j < arr.Length - 1-i; j++) {
+								if(arr[j]>arr[j+1]){
+									t = arr [j];
+								arr [j] = arr [j + 1];
+								arr [j + 1] = t;
+								
+							}}
+							
+						}
+			Console.WriteLine ("排序后的数组为:");
+						for (int k = 0; k < arr.Length; k++) {
+							Console.Write(" "+arr[k]);}
+							*/
+//选择排序
+			/*double min;
+			int minindex;
+         //比较的趟数
+			for (int i = 0; i < arr.Length - 1; i++) {
+				//注意每次开始比较，min的初值都为a[i];
+				min = arr[i];
+				minindex = i;
+				//每趟从什么位置开始比较
+				for (int j = i + 1; j < arr.Length; j++) {
+					//注意：要用min与arr[j]进行比较
+					if (min> arr[j]) {
+						//利用min和minindex的原因是:j的值会随着循环而改变，所以用min和minindex取出最小值和其坐标
+						min = arr[j];
+						minindex = j;
+					}
+				}arr[minindex] = arr[i];
+				arr[i] = min;
+			}
+			Console.WriteLine ("排序后的数组为:");
+			for (int k = 0; k < arr.Length; k++) {
+				Console.Write(" "+arr[k]);}	
+				*/
+
+		
+
+			//二维数组(可以理解为存储多个一维数组的数组)
+			/*定义：元素类型[,]数组名=
+			 * 静态：int[,]a={{1,2},{3,4}};
+			 * 动态：int[,]a=new int[,] {{1,2},{3,4}};
+			 * 注意：行数取值不固定，但是每行的元素数目必须相同
+			 * 即{{1,2}，{3,4}}可以,{{1,2},{3,4,5}}不行
+			 */
+			//定义一个2行3列的浮点型数组
+			//double[,]a={{2,3.4,4.5},{2,5,6.7}};
+			//定义一个数组，行和列交换放到另一个数组中
+			/*int [,]a={{1,2,3},{4,5,6}}	;
+           //GetLength (0)  获取二维数组第1维的长度，即为行的长度，GetLength (1)  获取二维数组第2维的长度，即为列的长度
+			
+//foreach的用法(快速遍历数组)
+			/*foreach(int x in a){
+			 * }
+			 * int x 表示迭代变量x及其迭代类型(数组元素的类型)
+			 * in a 表示在数组a 中，a表示数组名，可以为一维，二维数组
+			 * string str="shu170221"
+			 * Console.WriteLine(str[2]);可以用字符串变量名+下标输出字符（下标从0开始）
+			 * foreach(char c in str){Console.Write(c);}遍历字符串
+			*/
+
+//生成随机数
+			//用 Random 生成随机数；先定义一个对象a，然后调用a.Next(i,j)方法控制随机数的范围为i----j;
+			Random ran = new Random ();
+			int RandKey = ran.Next (1, 20);
+
+		}
+	}
+}

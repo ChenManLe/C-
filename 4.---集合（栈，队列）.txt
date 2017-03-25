@@ -1,0 +1,132 @@
+
+using System.Collections;
+using System.Collections.Generic;
+
+              public class Person{
+		public string name;
+		public Person(string name){
+			this.name = name;
+		  
+	          }
+                } 
+	
+	 /*数组存在的缺点：使用对象数组来存储不同数据类型的时候会存在装箱拆箱的操作
+	  *  
+	  * 数组一经声明创建之后长度就是固定，没法动态的进行修改内存大小
+	  * 
+	  * 对数组重新赋值改变内存大小会重新开辟内存空间
+
+          *集合访问长度用.Count属性，数组用.Length 
+	  */
+
+
+
+	
+//泛型集合---栈：首先引入 using System.Collections.Generic;
+		
+		Stack<int > intStack=new Stack<int> ();	
+
+
+			
+//泛型集合---队列：首先引入 using System.Collections.Generic;
+		Queue<string >  strQueue=new Queue<string> ();
+		
+			
+
+//存储多组数据类型的数据：object是所有类型的根类
+			
+       object[] objArray = { 1, 2, true, "1234" };//非引用类型进行装箱拆箱
+			
+          
+            
+			
+//1.声明创建一个栈
+              栈:stack 先进后出
+			 
+              注意：使用栈(非泛型)要引用集合类即引入类：System.Collections
+			Stack stack = new Stack ();
+//2.stack.Push(object obj) 将任意类型的数据压入栈顶
+			
+                        stack.Push (1);
+			stack.Push (false);
+			stack.Push ("string");
+			Person p0 = new Person ("张三");
+			stack.Push (p0);
+			
+//3.栈中元素个数stack.Count  (只读)
+			Console.WriteLine ("栈中元素个数={0}", stack.Count);
+			
+
+
+//4.出栈：将栈顶的数据弹出栈外(返回栈中元素)  object obj= stack.Pop();
+			
+			object obj= stack.Pop();
+			Console.WriteLine ("name={0},栈中元素个数={1}", (obj as Person).name, stack.Count);
+			object obj1= stack.Pop();
+			Console.WriteLine ("第二个出来的元素={0},栈中元素个数={1}", obj1, stack.Count);
+		
+			
+//5.peek():访问栈顶的数据，不移除,栈中元素个数不变  object obj = stack.Peek ()
+			object obj = stack.Peek ();
+			Console.WriteLine ("name={0},栈中元素个数={1}", (obj as Person).name, stack.Count);
+			
+
+
+
+//6.Contains()（返回一个bool值）       bool result = stack.Contains ("string");
+			
+
+                        bool result = stack.Contains ("string");
+			Person p1 = new Person ("张三");
+			//p1又开辟了一个内存空间，栈中存的是地址
+			bool result1 = stack.Contains (p1);
+			Console.WriteLine ("元素是否在栈中{0},{1}", result, result1);
+
+
+   //stack.Clear ():从栈中移除所有对象
+			/*
+			stack.Clear ();
+			Console.WriteLine ("栈中元素个数={0}", stack.Count);
+			*/
+    //快速枚举，遍历栈中的数据
+			foreach (object t in stack) {
+				Console.WriteLine (t);
+			}
+		
+		}
+
+       
+
+		
+//队列：
+			Queue myqueue=new Queue ();
+			
+
+
+//2.将数据放到队列结尾处（入队列）  myqueue.Enqueue(object obj);
+			
+                        myqueue.Enqueue("zhangsan");
+			myqueue.Enqueue(1);
+			Person person = new Person ("lisi");
+			myqueue.Enqueue(person);
+			
+
+//3.快速枚举
+			foreach(object t in myqueue ){
+				Console.WriteLine (t);
+			}
+			
+//4.从队列当中移除并返回数据（出队列）
+			
+                         object  obj1=myqueue.Dequeue();
+			Console.WriteLine ("第1个出来的元素={0},队列中元素个数={1}", obj1,myqueue.Count);
+			object  obj2=myqueue.Peek();
+			Console.WriteLine ("第2个出来的元素={0},队列中元素个数={1}", obj2,myqueue.Count);
+
+			
+           // myqueue.Clear ();
+			Console.WriteLine ("队列中元素个数={0}",myqueue.Count);
+			
+            //TrimtoSize()将队列的实际内存大小跟存放的数据大小相匹配
+
+			
